@@ -7,7 +7,6 @@ export default function Home({blogs}){
   return (
     <Layout>
       <hr />
-      {JSON.stringify(blogs)}
       <div className='blog-detail-page'>
         <Row>
           <Col md="8">
@@ -17,13 +16,12 @@ export default function Home({blogs}){
         <hr/>
         <div className={`page-wrapper`}>
           <Row className="mb-5">
-            <Col md="10">
+            {/* <Col md="10">
               <CardListItem />
-            </Col>
-
-            <Col md="4">
-              <CardItem />
-            </Col>
+            </Col> */}
+            {
+              blogs.map(({title, subtitle, slug}) => <Col key={slug} md="4"> <CardItem title={title} subtitle={subtitle} /> </Col>)
+            }
           </Row>
         </div>
       </div>
@@ -35,6 +33,7 @@ export default function Home({blogs}){
 
 // This function is called during Build Time, on the server and never called on the client 
 // Provides props to the page and builds a static page
+// During each Recompile, the getStaticProps() creates a new index.HTML file for index.js
 export async function getStaticProps(){
   const blogs = await getAllBlogs();
   return{
