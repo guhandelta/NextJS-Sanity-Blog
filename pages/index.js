@@ -1,28 +1,17 @@
-import { Row, Col, Media, Image, } from 'react-bootstrap';
-import { CardItem, CardListItem, Layout } from 'components';
+import { Row, Col } from 'react-bootstrap';
+import { AuthorIntro, CardItem, CardListItem, Layout } from 'components';
 
-export default function Home(){
+import { getAllBlogs } from '../lib/api';
+
+export default function Home({blogs}){
   return (
     <Layout>
+      <hr />
+      {JSON.stringify(blogs)}
       <div className='blog-detail-page'>
         <Row>
           <Col md="8">
-            <Media className="mb-4 admin-intro">
-              <Image
-                roundedCircle
-                width={64}
-                height={64}
-                className="mr-3"
-                src="./images/EC.jpg"
-                alt="Generic placeholder"
-              />
-              <Media.Body className="">
-                <h5 className="font-weight-bold mb-0">Hello,</h5>
-                <p className="welcome-text">
-                &ensp;&ensp;I am Guhaprasaanth and welcome to my blog
-                </p>
-              </Media.Body>
-            </Media>
+            <AuthorIntro />
           </Col>
         </Row>
         <hr/>
@@ -44,4 +33,13 @@ export default function Home(){
   )
 }
 
-
+// This function is called during Build Time, on the server and never called on the client 
+// Provides props to the page and builds a static page
+export async function getStaticProps(){
+  const blogs = await getAllBlogs();
+  return{
+    props:{
+      blogs
+    }
+  }
+}
