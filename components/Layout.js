@@ -1,9 +1,13 @@
 import { Container } from 'react-bootstrap';
 import { Navbar } from 'components';
+import Head from 'next/head';
 
 const Layout = ({children, className}) => {
     return (
-        <div>
+        <>  
+            <Head>
+                <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap" rel="stylesheet" />
+            </Head>
             <Container>
                 <Navbar/>   
                 <div className={`page-wrapper ${className}`}>
@@ -18,7 +22,7 @@ const Layout = ({children, className}) => {
                     </div>
                 </footer>
                 </Container>
-        </div>
+        </>
     )
 }
 
