@@ -4,7 +4,7 @@ import { AuthorIntro, CardItem, CardListItem, Layout } from 'components';
 import { getAllBlogs } from '../lib/api';
 
 export default function Home({blogs}){
-  debugger;
+  // debugger;
   return (
     <Layout>
       <hr />
@@ -21,13 +21,14 @@ export default function Home({blogs}){
               <CardListItem />
             </Col> */}
             {
-              blogs.map(({title, subtitle, slug, date, coverImage}) => 
+              blogs.map(({title, subtitle, slug, date, coverImage, author}) => 
                 <Col key={slug} md="4"> 
                   <CardItem 
                     title={title} 
                     subtitle={subtitle} 
                     date={date} 
                     image={coverImage}  
+                    author={author}
                   /> 
                 </Col>)
             }
