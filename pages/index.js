@@ -4,6 +4,7 @@ import { AuthorIntro, CardItem, CardListItem, Layout } from 'components';
 import { getAllBlogs } from '../lib/api';
 
 export default function Home({blogs}){
+  debugger;
   return (
     <Layout>
       <hr />
@@ -20,7 +21,15 @@ export default function Home({blogs}){
               <CardListItem />
             </Col> */}
             {
-              blogs.map(({title, subtitle, slug}) => <Col key={slug} md="4"> <CardItem title={title} subtitle={subtitle} /> </Col>)
+              blogs.map(({title, subtitle, slug, date, coverImage}) => 
+                <Col key={slug} md="4"> 
+                  <CardItem 
+                    title={title} 
+                    subtitle={subtitle} 
+                    date={date} 
+                    image={coverImage}  
+                  /> 
+                </Col>)
             }
           </Row>
         </div>
@@ -42,3 +51,6 @@ export async function getStaticProps(){
     }
   }
 }
+// Though the pages generated are static, there can be an additional functionality(ies) that can be executed on the clientside.
+// The static rendered HTML content comes along with a js <script>, holding the props. This will be provided to the page-
+//- which will be reexecuted with the <script> on the clientside 
