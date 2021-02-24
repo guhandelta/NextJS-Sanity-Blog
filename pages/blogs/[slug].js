@@ -1,20 +1,6 @@
 import { Row, Col } from 'react-bootstrap';
-import BlockContent from '@sanity/block-content-to-react';
-import { Layout, BlogHeader } from '../../components';
+import { Layout, BlogHeader, BlogContent } from '../../components';
 import { getBlogBySlug, getAllBlogs } from '../../lib/api';
-
-const serializers = {
-    types:{
-        code: ({ node: { language, code, filename } }) => {
-            return(
-                <pre data-language={language}>
-                    <code>{code}</code>
-                    <p>{filename}</p>
-                </pre>
-            )
-        }
-    }
-}
 
 // const BlogDetail = ({ title, subtitle, coverImage, date, author }) => {
 const BlogDetail = ({ blog }) => {
@@ -31,10 +17,8 @@ const BlogDetail = ({ blog }) => {
                         date={blog?.date}
                     />
                     <hr/>
-                    <BlockContent
-                        imageOptions={{ w:320, h:240, fit: 'max' }}
-                        serializers={serializers}
-                        blocks={blog.content}
+                    <BlogContent 
+                        content={blog.content}
                     />
                 </Col>
             </Row>

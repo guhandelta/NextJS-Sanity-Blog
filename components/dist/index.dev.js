@@ -39,6 +39,12 @@ Object.defineProperty(exports, "BlogHeader", {
     return _BlogHeader["default"];
   }
 });
+Object.defineProperty(exports, "BlogContent", {
+  enumerable: true,
+  get: function get() {
+    return _BlogContent["default"];
+  }
+});
 
 var _Navbar = _interopRequireDefault(require("./Navbar"));
 
@@ -51,5 +57,7 @@ var _CardListItem = _interopRequireDefault(require("./CardListItem"));
 var _AuthorIntro = _interopRequireDefault(require("./AuthorIntro"));
 
 var _BlogHeader = _interopRequireDefault(require("./BlogHeader"));
+
+var _BlogContent = _interopRequireDefault(require("./BlogContent"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }

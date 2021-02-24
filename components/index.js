@@ -4,5 +4,6 @@ import CardItem from './CardItem';
 import CardListItem from './CardListItem';
 import AuthorIntro from './AuthorIntro';
 import BlogHeader from './BlogHeader';
+import BlogContent from './BlogContent';
 
-export { Navbar, Layout, CardItem, CardListItem, AuthorIntro, BlogHeader  }
+export { Navbar, Layout, CardItem, CardListItem, AuthorIntro, BlogHeader, BlogContent  }
