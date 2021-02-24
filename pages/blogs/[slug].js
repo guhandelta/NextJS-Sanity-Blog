@@ -1,11 +1,24 @@
-import { Layout } from '../../components';
+import { Row, Col } from 'react-bootstrap';
+import { Layout, BlogHeader } from '../../components';
 import { getBlogBySlug, getAllBlogs } from '../../lib/api';
 
+// const BlogDetail = ({ title, subtitle, coverImage, date, author }) => {
 const BlogDetail = ({ blog }) => {
     debugger;
     return (
         <Layout>
-            <h1>Detail page for {blog?.slug}</h1>
+            <Row>
+                <Col md={{ span:10, offset: 1 }}>
+                    <BlogHeader 
+                        title={blog?.title}
+                        subtitle={blog?.subtitle}
+                        coverImage={blog?.coverImage}
+                        author={blog?.author}
+                        date={blog?.date}
+                    />
+                    <hr/>
+                </Col>
+            </Row>
         </Layout>
     )
 }
