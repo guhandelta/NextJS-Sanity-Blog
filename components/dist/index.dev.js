@@ -45,6 +45,12 @@ Object.defineProperty(exports, "BlogContent", {
     return _BlogContent["default"];
   }
 });
+Object.defineProperty(exports, "CodeHighlighter", {
+  enumerable: true,
+  get: function get() {
+    return _CodeHighlighter["default"];
+  }
+});
 
 var _Navbar = _interopRequireDefault(require("./Navbar"));
 
@@ -59,5 +65,7 @@ var _AuthorIntro = _interopRequireDefault(require("./AuthorIntro"));
 var _BlogHeader = _interopRequireDefault(require("./BlogHeader"));
 
 var _BlogContent = _interopRequireDefault(require("./BlogContent"));
+
+var _CodeHighlighter = _interopRequireDefault(require("./CodeHighlighter"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
