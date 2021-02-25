@@ -211,6 +211,14 @@ html, body {
   margin-bottom: 10px;
   text-align: center;
 }
+.blog-image-left {
+  float: left;
+  margin-right: 30px;
+}
+.blog-image-right {
+  float: right;
+  margin-left: 30px;
+}
 
 .image-alt {
   margin-top: 3px;

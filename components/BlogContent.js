@@ -12,9 +12,10 @@ const serializers = {
                 </CodeHighlighter>
             )
         },
-        image: ({node: { asset, alt }}) =>{
+        image: ({node: { asset, alt, position='center' }}) =>{
+            
             return(
-                <div className="blog-image">
+                <div className={`blog-image blog-image-${position}`}>
                     {/* asset.url is not necessary, as imageUrlBuilder.image() can extract thr url of the asset by itself || when returned like this,
                     .url() at the end is necessary, to return the URL explicity*/}
                     <img src={urlFor(asset).height(320).fit('max').url()} />
