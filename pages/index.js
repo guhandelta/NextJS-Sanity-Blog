@@ -1,19 +1,21 @@
 import { Row, Col } from 'react-bootstrap';
-import { AuthorIntro, CardItem, CardListItem, Layout } from 'components';
+import { AuthorIntro, CardItem, CardListItem, Layout, FilteringMenu } from 'components';
 
 import { getAllBlogs } from '../lib/api';
+import { useState } from 'react';
 
 export default function Home({blogs}){
   // debugger;
+  const [ filter, setFilter ] = useState({
+    view: { list: 0  }
+  });
   return (
     <Layout>
-      <hr />
-      <div className='blog-detail-page'>
-        <Row>
-          <Col md="8">
-            <AuthorIntro />
-          </Col>
-        </Row>
+        <AuthorIntro />
+        <FilteringMenu 
+          filter={filter}
+          onChange={(option, value ) => setFilter({...filter, [option]: value})}
+        />
         <hr/>
         <div className={`page-wrapper`}>
           <Row className="mb-5">
@@ -22,23 +24,28 @@ export default function Home({blogs}){
             </Col> */}
             {
               blogs.map(({title, subtitle, slug, date, coverImage, author}) => 
-                <Col key={slug} md="4"> 
-                  <CardItem 
-                    title={title} 
-                    subtitle={subtitle} 
-                    date={date} 
-                    image={coverImage}  
-                    author={author}
-                    slug={slug}
-                    link={{
-                      href: '/blogs/[slug]',
-                      as: `/blogs/${slug}`
-                    }}
-                  /> 
-                </Col>)
+                filter.view.list ?
+                  <Col key={`${slug}-list`} md="9">
+                    <CardListItem />
+                  </Col>
+                  :
+                  <Col key={slug} md="4"> 
+                    <CardItem 
+                      title={title} 
+                      subtitle={subtitle} 
+                      date={date} 
+                      image={coverImage}  
+                      author={author}
+                      slug={slug}
+                      link={{
+                        href: '/blogs/[slug]',
+                        as: `/blogs/${slug}`
+                      }}
+                    /> 
+                  </Col>
+              )
             }
           </Row>
-        </div>
       </div>
     </Layout>
       
