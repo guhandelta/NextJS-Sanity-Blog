@@ -3,15 +3,16 @@ import { useSWRPages } from "swr"
 import { CardItem, CardListItem } from 'components';
 import { useGetBlogs } from 'actions';
 
-export const useGetBlogsPages = ({ blogs: initialData, filter }) =>{ //{blogs} => Initial Data
+export const useGetBlogsPages = ({ blogs , filter }) =>{ //{blogs} => Initial Data
     
     return useSWRPages(
         'index-page',
         // callback() to display the components on the page
         ({ offset, withSWR }) =>{
-            const { data: blogs } = withSWR(useGetBlogs({offset}));
-            if(!blogs) return 'Loading';
-            return blogs
+            let initialData = !offset && blogs; // Assign the blogs as initial value only if offset is null or 0
+            const { data: paginatedBlogs } = withSWR(useGetBlogs({offset}, initialData));
+            if(!paginatedBlogs) return 'Loading';
+            return paginatedBlogs
                 .map(({title, subtitle, slug, date, coverImage, author}) => 
                     filter.view.list ? //Checking what view is currently used to display the blogs
                     /* --------------------------------- */
