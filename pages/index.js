@@ -1,15 +1,9 @@
+import { useState } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import { AuthorIntro, CardItem, CardListItem, Layout, FilteringMenu } from 'components';
-// SWR - Stale-While-Revalidate => Provide data from cache, while the req sent in parallel will fetch the updated data adn update the UI with-
-//- with latest data, once res arrives
-import useSWR from 'swr';
 
 import { getAllBlogs } from '../lib/api';
-import { useState } from 'react';
-
-// Making a req to fetch more blogs througha useEffect(()=>{},[]) will throw a CORS error
-// This fn() will will make a call ti lib/api, which will be executed in the server => preventing CORS error
-const fetcher = url => fetch(url).then(res => res.json());
+import { useGetBlogs } from '../actions';
 
 export default function Home({blogs}){
   // debugger;
@@ -17,7 +11,8 @@ export default function Home({blogs}){
     view: { list: 0  }
   });
 
-  const { data, error } = useSWR('/api/hello', fetcher);
+  const { data, error } = useGetBlogs();
+  if(data) alert(JSON.stringify(data));
   debugger;
 
   return (
