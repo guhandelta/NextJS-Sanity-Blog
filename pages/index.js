@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Row } from 'react-bootstrap';
+import { Button, Row } from 'react-bootstrap';
 import { AuthorIntro, Layout, FilteringMenu } from 'components';
 
 import { getAllBlogs } from '../lib/api';
@@ -15,11 +15,12 @@ export default function Home({ blogs }){
   //- executed in pagination
   // const { data: blogs, error } = useGetBlogs(initialData);
 
+  // isLoadingMore, isReachingEnd, loadMore => are returned by useSWRPages()
   const { 
     pages,
-    isLoadingMore,
-    isReachingEnd,
-    loadMore
+    isLoadingMore, // True whenever making requests to fetch data
+    isReachingEnd, //True when the loaded daat is an empty array
+    loadMore // To load more data
    } = useGetBlogsPages({ blogs, filter });
 
   return (
@@ -34,6 +35,16 @@ export default function Home({ blogs }){
           <Row className="mb-5">
             { pages }
           </Row>
+          <div style={{textAlign :'center'}}>
+            <Button
+              size="lg"
+              variant="outline-secondary"
+              onClick={loadMore}
+              disabled = { isLoadingMore | isReachingEnd }
+            >
+              { isLoadingMore ? '...' : isReachingEnd ? 'No More Blogs' : 'Load More' }
+            </Button>
+          </div>
       </div>
     </Layout>
       
