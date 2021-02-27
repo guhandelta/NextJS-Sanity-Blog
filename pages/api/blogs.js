@@ -2,6 +2,10 @@
 import { getAllBlogs } from 'lib/api';
 
 export default async function useGetAllBlogs(req, res){
-  const data = await getAllBlogs();
+
+  // Assign 0 if offset is undefined and parse the offset to int, as it will be a string
+  const offset = parseInt((req.query.offset || 0), 10); // 10 => radix 10 for decimal system
+
+  const data = await getAllBlogs({offset});
   return res.status(200).json(data);
 }

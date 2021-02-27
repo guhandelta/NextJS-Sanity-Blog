@@ -9,7 +9,7 @@ export const useGetBlogsPages = ({ blogs: initialData, filter }) =>{ //{blogs} =
         'index-page',
         // callback() to display the components on the page
         ({ offset, withSWR }) =>{
-            const { data: blogs } = withSWR(useGetBlogs({offset}, initialData));
+            const { data: blogs } = withSWR(useGetBlogs({offset}));
             if(!blogs) return 'Loading';
             return blogs
                 .map(({title, subtitle, slug, date, coverImage, author}) => 
