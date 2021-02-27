@@ -25,8 +25,9 @@ var useGetHello = function useGetHello() {
 
 exports.useGetHello = useGetHello;
 
-var useGetBlogs = function useGetBlogs(initialData) {
-  return (0, _swr["default"])('/api/blogs', fetcher, {
+var useGetBlogs = function useGetBlogs(_ref, initialData) {
+  var offset = _ref.offset;
+  return (0, _swr["default"])("/api/blogs?offset=".concat(offset || 0), fetcher, {
     initialData: initialData
   });
 };

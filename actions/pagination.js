@@ -9,8 +9,7 @@ export const useGetBlogsPages = ({ blogs: initialData, filter }) =>{ //{blogs} =
         'index-page',
         // callback() to display the components on the page
         ({ offset, withSWR }) =>{
-            const { data: blogs } = withSWR(useGetBlogs(initialData));
-            
+            const { data: blogs } = withSWR(useGetBlogs({offset}, initialData));
             if(!blogs) return 'Loading';
             return blogs
                 .map(({title, subtitle, slug, date, coverImage, author}) => 
@@ -50,8 +49,10 @@ export const useGetBlogsPages = ({ blogs: initialData, filter }) =>{ //{blogs} =
         },
         // fn to compute offset to supply to teh previous callback()
         // SWR: Data withSWR() || index: current page number
+        // Data fetched in #12, will be available also in SWR
         (SWR, index) => {
-            return 0;
+            if(SWR.data && SWR.data.length === 0) return null;
+            return (index+1)*3;
         },
         // Dependency Array :: fn gets re executed whenever the value changes
         [filter]
