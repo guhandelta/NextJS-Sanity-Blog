@@ -25,8 +25,10 @@ var useGetHello = function useGetHello() {
 
 exports.useGetHello = useGetHello;
 
-var useGetBlogs = function useGetBlogs() {
-  return (0, _swr["default"])('/api/blogs', fetcher);
+var useGetBlogs = function useGetBlogs(initialData) {
+  return (0, _swr["default"])('/api/blogs', fetcher, {
+    initialData: initialData
+  });
 };
 
 exports.useGetBlogs = useGetBlogs;

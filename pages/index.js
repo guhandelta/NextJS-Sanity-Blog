@@ -5,14 +5,14 @@ import { AuthorIntro, CardItem, CardListItem, Layout, FilteringMenu } from 'comp
 import { getAllBlogs } from '../lib/api';
 import { useGetBlogs } from '../actions';
 
-export default function Home({blogs}){
+export default function Home({blogs: initialData}){
   // debugger;
   const [ filter, setFilter ] = useState({
     view: { list: 0  }
   });
 
-  const { data, error } = useGetBlogs();
-  if(data) alert(JSON.stringify(data));
+  const { data: blogs, error } = useGetBlogs(initialData);
+  if(!blogs) { return 'loading'; }
   debugger;
 
   return (
@@ -25,9 +25,6 @@ export default function Home({blogs}){
         <hr/>
         <div className={`page-wrapper`}>
           <Row className="mb-5">
-            {/* <Col md="10">
-              <CardListItem />
-            </Col> */}
             {
               blogs.map(({title, subtitle, slug, date, coverImage, author}) => 
                 filter.view.list ?
@@ -73,7 +70,7 @@ export default function Home({blogs}){
 // Provides props to the page and builds a static page
 // During each Recompile, the getStaticProps() creates a new index.HTML file for index.js || Request is made from the server
 export async function getStaticProps(){
-  const blogs = await getAllBlogs();
+  const blogs = await getAllBlogs({ offset: 3 });
   return{
     props:{
       blogs
