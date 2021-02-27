@@ -8,7 +8,8 @@ import { useGetBlogsPages } from 'actions/pagination';
 export default function Home({ blogs }){
   // debugger;
   const [ filter, setFilter ] = useState({
-    view: { list: 0 }
+    view: { list: 0 },
+    date: { asc: 0 }
   });
 
   // Created as an alternative to fetching the Blogs using useEffect(), but no longer required here as the same is-
