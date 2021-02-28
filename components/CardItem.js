@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { urlFor } from 'lib/api';
 
 const CardItem = ({title, subtitle, date, image, author, link}) => {
+
     return (
         <div>
             <Card className={`gp-card`}>
@@ -25,6 +26,7 @@ const CardItem = ({title, subtitle, date, image, author, link}) => {
                       src={
                         urlFor(image)
                         .height(600)
+                        .width(350)
                         .crop('center')
                         .fit('clip')
                         .url()

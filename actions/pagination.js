@@ -2,16 +2,31 @@ import { Col } from 'react-bootstrap';
 import { useSWRPages } from "swr"
 import { CardItem, CardListItem } from 'components';
 import { useGetBlogs } from 'actions';
+import { useEffect } from 'react';
 
 export const useGetBlogsPages = ({ blogs , filter }) =>{ //{blogs} => Initial Data
+    
+    
+    // On the clientside, to refetch the blogs without providing initialData, to include the blogs in the current-
+    //- page(i.e. the blogs fetched 1st) in the sorting with/by the date
+    // Using useEffect() to make sure that this functionality is executed in the browser
+    useEffect(()=>{
+    window.__pagination__init = true;
+    },[]);
+    
     
     return useSWRPages(
         'index-page',
         // callback() to display the components on the page
         ({ offset, withSWR }) =>{
             let initialData = !offset && blogs; // Assign the blogs as initial value only if offset is null or 0
+            
+            // initialData = null, if the refetch request originates from the browser
+            if(typeof window !== 'undefined' && window.__pagination__init) initialData = null;
+
             const { data: paginatedBlogs } = withSWR(useGetBlogs({offset, filter}, initialData));
             if(!paginatedBlogs) return 'Loading';
+            
             return paginatedBlogs
                 .map(({title, subtitle, slug, date, coverImage, author}) => 
                     filter.view.list ? //Checking what view is currently used to display the blogs
