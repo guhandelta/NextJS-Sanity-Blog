@@ -1,6 +1,9 @@
-import { Nav, Navbar, NavDropdown, Form, FormControl, Button } from 'react-bootstrap';
+import { useTheme } from 'provider/ThemeProvider';
+import { Nav, Navbar } from 'react-bootstrap';
+import Link from 'next/link';
 
 export default  () => {
+    const { theme, toggleTheme } = useTheme();
     return (
         <div>
             <Navbar
@@ -14,9 +17,13 @@ export default  () => {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ml-auto">
-                        <Nav.Link className="gp-navbar-item gp-navbar-link" href='/'>
-                            Home
-                        </Nav.Link>
+                        <Nav.Link 
+                            as={() => 
+                                <Link href="/">
+                                    <a className="gp-navbar-item gp-navbar-link" >Home</a>
+                                </Link>}
+                        />
+                        <button className="btn btn-success" onClick={toggleTheme}>{theme.type}</button>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>  
