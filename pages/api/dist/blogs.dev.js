@@ -19,7 +19,7 @@ function useGetAllBlogs(req, res) {
 
           date = req.query.date || 'desc';
           _context.next = 4;
-          return regeneratorRuntime.awrap((0, _api.getAllBlogs)({
+          return regeneratorRuntime.awrap((0, _api.getPaginatedBlogs)({
             offset: offset,
             date: date
           }));

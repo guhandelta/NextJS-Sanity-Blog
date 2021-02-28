@@ -1,3 +1,5 @@
+import { useRouter } from 'next/router';
+import ErrorPage from 'next/error';
 import moment from 'moment';
 import { Row, Col } from 'react-bootstrap';
 import { Layout, BlogHeader, BlogContent } from '../../components';
@@ -5,9 +7,24 @@ import { getBlogBySlug, getAllBlogs, urlFor } from 'lib/api';
 
 // const BlogDetail = ({ title, subtitle, coverImage, date, author }) => {
 const BlogDetail = ({ blog }) => {
-    debugger;
+    // In normal scenario, when requesting for a page that had not been generated(it does not have a slug), it will-
+    //- land in 404 page, but now, the blog will be fetched by it's slug 
+    const router = useRouter();
+    // Display/Redirect to ErrorPage, if the fallback is false and there is no slug available
+    if(!router.isFallback && !blog?.slug) return <ErrorPage status="404" />
+
+    if(router.isFallback){
+        console.log('====================================');
+        console.log('Loading Fallback Page');
+        console.log('====================================');
+        return <Layout className="blog-detail-page">
+            Loading...
+        </Layout>
+    }
+
+
     return (
-        <Layout>
+        <Layout className="blog-detail-page">
             <Row>
                 <Col md={{ span:10, offset: 1 }}>
                     <BlogHeader 
@@ -30,6 +47,10 @@ const BlogDetail = ({ blog }) => {
 }
 
 export async function getStaticProps({ params }){
+    console.log('====================================');
+    console.log(params);
+    console.log('Loading Detail Page');
+    console.log('====================================');
     const blog = await getBlogBySlug(params.slug);
     return{
         props: { 
@@ -43,10 +64,15 @@ export async function getStaticProps({ params }){
 // getStaticPaths() will be called for/exe on each page
 export async function getStaticPaths(){
     const blogs = await getAllBlogs();
-    // const paths =  blogs?.map(blog=>({params: {slug: blog.slug}}));
+    const paths =  blogs?.map(blog=>({params: {slug: blog.slug}}));
+    console.log('====================================');
+    console.log(paths);
+    console.log('====================================');
     return {
-        paths: blogs?.map(blog=>({params: {slug: blog.slug}})),
-        fallback: false // returning fallback is mandatory, false => land on the default 404 page if page not found
+        paths,
+        fallback: true // returning fallback is mandatory, false => land on the default 404 page if page not found
+        // true => make a req to fetch the blogs, by re-running #32 getStaticProps(), as makes this a fallback-
+        //- page 
     }
 }
 

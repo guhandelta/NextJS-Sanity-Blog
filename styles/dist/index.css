@@ -236,6 +236,10 @@ html, body {
 .blog-detail-page .blog-detail-header-title {
   font-size: 52px;
 }
+.blog-detail-page .blog-detail-header img {
+  left: auto;
+  right: auto;
+}
 
 .admin-intro .welcome-text {
   font-size: 1.4rem;
