@@ -311,3 +311,22 @@ html, body {
 .dark .gp-navbar.gp-nav-base .gp-navbar-link {
   color: #ffffff;
 }
+
+.day-night-toggle.react-toggle.react-toggle--checked:hover:not(.react-toggle--disabled) .react-toggle-track {
+  background-color: black;
+}
+.day-night-toggle.react-toggle .react-toggle-track {
+  background-color: black;
+}
+.day-night-toggle.react-toggle .react-toggle-track:hover {
+  background-color: black;
+}
+.day-night-toggle.react-toggle .react-toggle-track-x, .day-night-toggle.react-toggle .react-toggle-track-check {
+  right: 8px;
+  width: 15px;
+  height: 15px;
+}
+.day-night-toggle.react-toggle .react-toggle-track-x svg, .day-night-toggle.react-toggle .react-toggle-track-check svg {
+  width: 100%;
+  height: 100%;
+}

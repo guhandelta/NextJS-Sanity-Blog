@@ -9,6 +9,7 @@ import BlogHeader from './BlogHeader';
 import BlogContent from './BlogContent';
 import CodeHighlighter from './CodeHighlighter';
 import FilteringMenu from './FilteringMenu';
+import ThemeToggle from './ThemeToggle';
 
 export { 
         Navbar, 
@@ -21,5 +22,6 @@ export {
         BlogHeader, 
         BlogContent, 
         CodeHighlighter, 
-        FilteringMenu  
+        FilteringMenu,  
+        ThemeToggle
     }

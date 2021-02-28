@@ -69,6 +69,12 @@ Object.defineProperty(exports, "FilteringMenu", {
     return _FilteringMenu["default"];
   }
 });
+Object.defineProperty(exports, "ThemeToggle", {
+  enumerable: true,
+  get: function get() {
+    return _ThemeToggle["default"];
+  }
+});
 
 var _Navbar = _interopRequireDefault(require("./Navbar"));
 
@@ -91,5 +97,7 @@ var _BlogContent = _interopRequireDefault(require("./BlogContent"));
 var _CodeHighlighter = _interopRequireDefault(require("./CodeHighlighter"));
 
 var _FilteringMenu = _interopRequireDefault(require("./FilteringMenu"));
+
+var _ThemeToggle = _interopRequireDefault(require("./ThemeToggle"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
