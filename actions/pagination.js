@@ -29,12 +29,20 @@ export const useGetBlogsPages = ({ blogs , filter }) =>{ //{blogs} => Initial Da
                 return Array(3)
                         .fill()
                         .map((_,i) => // _ => iterated item(don't care about the number) | i -> index 
-                        <Col key={i} md="4"> 
-                        {/*Using the index as the key is not a good practice, as it can negatively impact 
-                        performance and may cause issues with component state, it is used here as this is just
-                        to display the placeholder and nothing special would be done here*/}
-                            <CardItemPlaceholder />
-                        </Col>
+                            filter.view.list ? //Checking what view is currently used to display the blogs
+                                <Col key={i} md="9"> 
+                                {/*Using the index as the key is not a good practice, as it can negatively impact 
+                                performance and may cause issues with component state, it is used here as this is just
+                                to display the placeholder and nothing special would be done here*/}
+                                    <CardListItemPlaceholder />
+                                </Col>
+                            :
+                                <Col key={`${i}-item`} md="4"> 
+                                {/*Using the index as the key is not a good practice, as it can negatively impact 
+                                performance and may cause issues with component state, it is used here as this is just
+                                to display the placeholder and nothing special would be done here*/}
+                                    <CardItemPlaceholder />
+                                </Col>
                     )
                 }
             
@@ -79,7 +87,7 @@ export const useGetBlogsPages = ({ blogs , filter }) =>{ //{blogs} => Initial Da
         // Data fetched in #12, will be available also in SWR
         (SWR, index) => {
             if(SWR.data && SWR.data.length === 0) return null;
-            return (index+1)*3;
+            return (index+1)*6;
         },
         // Dependency Array :: fn gets re executed whenever the value changes
         [filter]
