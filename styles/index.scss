@@ -159,7 +159,7 @@ html, body {
         font-family: Anurati;
 
         a{
-          color: black;
+          // color: black;
           font-weight: bold;
           text-decoration: none;
         }
@@ -358,3 +358,33 @@ html, body {
       color: #63696e;
     }
   }
+
+  .dark {
+  .card.gp-card {
+    background-color: #232129;
+    transition: color 0s ease-out 0s, background 0.2s ease-out 0s;
+    .card-body-wrapper {
+      background-color: #232129;
+      transition: color 0s ease-out 0s, background 0.2s ease-out 0s;
+    }
+
+    .card-button {
+      background-color: #9b5f5f;
+    }
+  }
+
+  .gp-navbar.gp-nav-base {
+    width: 100%;
+    padding: 20px 0px;
+
+    .gp-navbar {
+      &-brand {
+        color: #ffffff;
+      }
+
+      &-link {
+        color: #ffffff;
+      }
+    }
+  }
+}

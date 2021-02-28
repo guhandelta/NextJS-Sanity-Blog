@@ -132,7 +132,6 @@ html, body {
   font-family: Anurati;
 }
 .gp-navbar.gp-nav-base .gp-navbar-brand a {
-  color: black;
   font-weight: bold;
   text-decoration: none;
 }
@@ -236,10 +235,6 @@ html, body {
 .blog-detail-page .blog-detail-header-title {
   font-size: 52px;
 }
-.blog-detail-page .blog-detail-header img {
-  left: auto;
-  right: auto;
-}
 
 .admin-intro .welcome-text {
   font-size: 1.4rem;
@@ -293,4 +288,26 @@ html, body {
 }
 .page-footer a {
   color: #63696e;
+}
+
+.dark .card.gp-card {
+  background-color: #232129;
+  transition: color 0s ease-out 0s, background 0.2s ease-out 0s;
+}
+.dark .card.gp-card .card-body-wrapper {
+  background-color: #232129;
+  transition: color 0s ease-out 0s, background 0.2s ease-out 0s;
+}
+.dark .card.gp-card .card-button {
+  background-color: #9b5f5f;
+}
+.dark .gp-navbar.gp-nav-base {
+  width: 100%;
+  padding: 20px 0px;
+}
+.dark .gp-navbar.gp-nav-base .gp-navbar-brand {
+  color: #ffffff;
+}
+.dark .gp-navbar.gp-nav-base .gp-navbar-link {
+  color: #ffffff;
 }

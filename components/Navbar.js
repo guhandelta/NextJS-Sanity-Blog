@@ -1,18 +1,17 @@
-import { useTheme } from 'provider/ThemeProvider';
 import { Nav, Navbar } from 'react-bootstrap';
 import Link from 'next/link';
 
-export default  () => {
-    const { theme, toggleTheme } = useTheme();
+export default  ({ theme, toggleTheme }) => {
     return (
         <div>
             <Navbar
+                variant={theme.type}
                 className="gp-navbar gp-nav-base"
                 bg="transparent"
                 expand="lg" 
             >
                 <Navbar.Brand className="gp-navbar-brand">
-                    <a href="/">Guhaprasaanth</a>
+                    <a style={{color: theme.fontColor}} href="/">Guhaprasaanth</a>
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
