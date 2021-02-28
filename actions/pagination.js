@@ -1,6 +1,6 @@
 import { Col } from 'react-bootstrap';
 import { useSWRPages } from "swr"
-import { CardItem, CardListItem } from 'components';
+import { CardItem, CardListItem, CardItemPlaceholder, CardListItemPlaceholder } from 'components';
 import { useGetBlogs } from 'actions';
 import { useEffect } from 'react';
 
@@ -25,7 +25,18 @@ export const useGetBlogsPages = ({ blogs , filter }) =>{ //{blogs} => Initial Da
             if(typeof window !== 'undefined' && window.__pagination__init) initialData = null;
 
             const { data: paginatedBlogs } = withSWR(useGetBlogs({offset, filter}, initialData));
-            if(!paginatedBlogs) return 'Loading';
+            if(!paginatedBlogs){
+                return Array(3)
+                        .fill()
+                        .map((_,i) => // _ => iterated item(don't care about the number) | i -> index 
+                        <Col key={i} md="4"> 
+                        {/*Using the index as the key is not a good practice, as it can negatively impact 
+                        performance and may cause issues with component state, it is used here as this is just
+                        to display the placeholder and nothing special would be done here*/}
+                            <CardItemPlaceholder />
+                        </Col>
+                    )
+                }
             
             return paginatedBlogs
                 .map(({title, subtitle, slug, date, coverImage, author}) => 
