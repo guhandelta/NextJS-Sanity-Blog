@@ -1,5 +1,6 @@
 import { Col } from 'react-bootstrap';
 import { useSWRPages } from "swr"
+import moment from 'moment';
 import { CardItem, CardListItem, CardItemPlaceholder, CardListItemPlaceholder } from 'components';
 import { useGetBlogs } from 'actions';
 import { useEffect } from 'react';
@@ -54,7 +55,7 @@ export const useGetBlogsPages = ({ blogs , filter }) =>{ //{blogs} => Initial Da
                         <CardListItem 
                         title={title} 
                         subtitle={subtitle} 
-                        date={date} 
+                        date={moment(date).format('LL')} 
                         author={author}
                         slug={slug}
                         link={{
@@ -70,7 +71,7 @@ export const useGetBlogsPages = ({ blogs , filter }) =>{ //{blogs} => Initial Da
                         <CardItem 
                         title={title} 
                         subtitle={subtitle} 
-                        date={date} 
+                        date={moment(date).format('LL')} 
                         image={coverImage}  
                         author={author}
                         slug={slug}

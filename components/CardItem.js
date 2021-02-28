@@ -7,7 +7,7 @@ const CardItem = ({title, subtitle, date, image, author, link, mode='normal'}) =
     return (
         <div>
             <Card className={`gp-card ${mode}`}>
-                <div className="card-body-wrapper">
+                <div className={`card-body-wrapper ${!image ? 'no-image':''}`}>
                   <Card.Header
                     className="d-flex flex-row">
                     <img
@@ -34,17 +34,18 @@ const CardItem = ({title, subtitle, date, image, author, link, mode='normal'}) =
                     {mode === 'placeholder' ?
                         <div className="image-placeholder" />
                       :
-                      <Card.Img
-                        src={
-                          urlFor(image)
-                          .height(600)
-                          .width(350)
-                          .crop('center')
-                          .fit('clip')
-                          .url()
-                        }
-                        alt="Card image cap"
-                      />
+                        image && 
+                          <Card.Img
+                            src={
+                              urlFor(image)
+                              .height(600)
+                              .width(350)
+                              .crop('center')
+                              .fit('clip')
+                              .url()
+                            }
+                            alt="Card image cap"
+                          />
                     }
                   </div>
                   <Card.Body>

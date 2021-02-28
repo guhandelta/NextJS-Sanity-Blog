@@ -15,11 +15,13 @@ const BlogHeader = ({title, subtitle, date, coverImage, author}) => {
                 </p>
                 <h1 className="font-weight-bold blog-detail-header-title">{title}</h1>
                 <h2 className="blog-detail-header-subtitle mb-3">{subtitle}</h2>
-                <img 
-                    src={coverImage} 
-                    alt="cover image" 
-                    className="image-fluid rounded"
-                />
+                {coverImage &&
+                    <img 
+                        src={coverImage} 
+                        alt="cover image" 
+                        className="image-fluid rounded"
+                    />
+                }
             </div>
     )
 }

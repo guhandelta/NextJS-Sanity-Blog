@@ -1,3 +1,4 @@
+import moment from 'moment';
 import { Row, Col } from 'react-bootstrap';
 import { Layout, BlogHeader, BlogContent } from '../../components';
 import { getBlogBySlug, getAllBlogs, urlFor } from 'lib/api';
@@ -14,12 +15,14 @@ const BlogDetail = ({ blog }) => {
                         subtitle={blog?.subtitle}
                         coverImage={urlFor(blog.coverImage).height(400).url()}
                         author={blog?.author}
-                        date={blog?.date}
+                        date={moment(blog?.date).format('LL')}
                     />
                     <hr/>
-                    <BlogContent 
-                        content={blog.content}
-                    />
+                    {blog?.content &&
+                        <BlogContent 
+                            content={blog.content}
+                        />
+                    }
                 </Col>
             </Row>
         </Layout>

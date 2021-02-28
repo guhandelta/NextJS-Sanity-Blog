@@ -39,6 +39,9 @@ html, body {
   padding: 20px;
   padding-bottom: 40px;
 }
+.card.gp-card .card-body-wrapper.no-image {
+  min-height: auto;
+}
 .card.gp-card .card-body {
   padding: 15px 0px 0px;
 }
