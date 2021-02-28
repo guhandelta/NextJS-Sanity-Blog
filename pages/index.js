@@ -57,7 +57,7 @@ export default function Home({ blogs }){
 // Provides props to the page and builds a static page
 // During each Recompile, the getStaticProps() creates a new index.HTML file for index.js || Request is made from the server
 export async function getStaticProps(){
-  const blogs = await getAllBlogs({ offset: 0 });
+  const blogs = await getAllBlogs({ offset: 0, date: 'desc' });
   return{
     props:{
       blogs

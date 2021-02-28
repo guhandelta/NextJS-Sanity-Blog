@@ -10,7 +10,7 @@ export const useGetBlogsPages = ({ blogs , filter }) =>{ //{blogs} => Initial Da
         // callback() to display the components on the page
         ({ offset, withSWR }) =>{
             let initialData = !offset && blogs; // Assign the blogs as initial value only if offset is null or 0
-            const { data: paginatedBlogs } = withSWR(useGetBlogs({offset}, initialData));
+            const { data: paginatedBlogs } = withSWR(useGetBlogs({offset, filter}, initialData));
             if(!paginatedBlogs) return 'Loading';
             return paginatedBlogs
                 .map(({title, subtitle, slug, date, coverImage, author}) => 

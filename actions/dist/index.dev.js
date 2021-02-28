@@ -26,8 +26,9 @@ var useGetHello = function useGetHello() {
 exports.useGetHello = useGetHello;
 
 var useGetBlogs = function useGetBlogs(_ref, initialData) {
-  var offset = _ref.offset;
-  return (0, _swr["default"])("/api/blogs?offset=".concat(offset || 0), fetcher, {
+  var offset = _ref.offset,
+      filter = _ref.filter;
+  return (0, _swr["default"])("/api/blogs?offset=".concat(offset || 0, "&date=").concat(filter.date.asc ? 'asc' : 'desc'), fetcher, {
     initialData: initialData
   });
 };
