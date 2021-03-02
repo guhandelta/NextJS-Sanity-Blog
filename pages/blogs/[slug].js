@@ -48,8 +48,8 @@ const BlogDetail = ({ blog, preview }) => {
 }
 
 export async function getStaticProps({ params, preview=false, previewData }){ //setting preview, by default to false
-
-    const blog = await getBlogBySlug(params.slug);
+    // Pass preview value to getBlogBySlug to fetch the data of draft blog
+    const blog = await getBlogBySlug(params.slug, preview);
     return{
         props: { 
             blog,
@@ -64,9 +64,6 @@ export async function getStaticProps({ params, preview=false, previewData }){ //
 export async function getStaticPaths(){
     const blogs = await getAllBlogs();
     const paths =  blogs?.map(blog=>({params: {slug: blog.slug}}));
-    console.log('====================================');
-    console.log(paths);
-    console.log('====================================');
     return {
         paths,
         fallback: true // returning fallback is mandatory, false => land on the default 404 page if page not found
