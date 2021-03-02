@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = enablePreview;
 
-var _api = require("lib/dist/api.dev");
+var _api = require("lib/api");
 
 function enablePreview(req, res) {
   var blog;
@@ -41,6 +41,7 @@ function enablePreview(req, res) {
         case 7:
           // setPreviewData() will set some cookies in the browser, which will inform NextJS as to display the page in-
           //- preview mode
+          // Cookies => __next_preview_data  |  __prerender_bypass
           res.setPreviewData({});
           res.writeHead(307, {
             Location: "/blogs/".concat(blog.slug)

@@ -2,11 +2,11 @@ import { useRouter } from 'next/router';
 import ErrorPage from 'next/error';
 import moment from 'moment';
 import { Row, Col } from 'react-bootstrap';
-import { Layout, BlogHeader, BlogContent } from '../../components';
+import { Layout, BlogHeader, BlogContent, PreviewAlert } from '../../components';
 import { getBlogBySlug, getAllBlogs, urlFor } from 'lib/api';
 
 // const BlogDetail = ({ title, subtitle, coverImage, date, author }) => {
-const BlogDetail = ({ blog }) => {
+const BlogDetail = ({ blog, preview }) => {
     // In normal scenario, when requesting for a page that had not been generated(it does not have a slug), it will-
     //- land in 404 page, but now, the blog will be fetched by it's slug 
     const router = useRouter();
@@ -27,6 +27,7 @@ const BlogDetail = ({ blog }) => {
         <Layout className="blog-detail-page">
             <Row>
                 <Col md={{ span:10, offset: 1 }}>
+                    { preview && <PreviewAlert /> }
                     <BlogHeader 
                         title={blog?.title}
                         subtitle={blog?.subtitle}
@@ -46,15 +47,13 @@ const BlogDetail = ({ blog }) => {
     )
 }
 
-export async function getStaticProps({ params }){
-    console.log('====================================');
-    console.log(params);
-    console.log('Loading Detail Page');
-    console.log('====================================');
+export async function getStaticProps({ params, preview=false, previewData }){ //setting preview, by default to false
+
     const blog = await getBlogBySlug(params.slug);
     return{
         props: { 
-            blog
+            blog,
+            preview // To let the user know that they are in the preview mode
         }
     }
 }
