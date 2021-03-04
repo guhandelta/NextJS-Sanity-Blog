@@ -6,7 +6,6 @@ import { getPaginatedBlogs } from '../lib/api';
 import { useGetBlogsPages } from 'actions/pagination';
 
 export default function Home({ blogs, preview }){
-  // debugger;
   const [ filter, setFilter ] = useState({
     view: { list: 0 },
     date: { asc: 0 }
